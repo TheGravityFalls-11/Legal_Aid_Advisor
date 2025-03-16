@@ -109,17 +109,24 @@ python manage.py runserver
 
 ---
 
-## 🔭 Future Scope
+Future Scope 🔭
+🔥1. Multi-Lingual Legal Support
+Extend support for regional Indian languages (Hindi, Tamil, Telugu, etc.) to ensure accessibility for a broader audience. Implement real-time translation for legal documents and conversations.
 
-🔥 **Multi-Lingual Legal Support** – Support for Indian regional languages.\
-📜 **Legal Case Prediction** – AI-based analysis of legal cases.\
-🏦 **Lawyer Consultation & Booking** – Connect users with legal experts.\
-🔍 **Integration with Govt Portals** – Access legal databases directly.\
-🏦 **Financial & Tax Law Advisory** – Provide tax and corporate legal advice.\
-🔗 **Blockchain-based Verification** – Secure legal documents with blockchain.
+📜2. Legal Case Prediction & Insights
+Use machine learning models to analyze past legal cases and predict possible outcomes. Generate case law recommendations based on previous judgments.
 
----
+🏛️3. Lawyer Consultation & Booking
+Integrate a lawyer directory where users can connect with legal experts. Provide automated appointment scheduling for legal consultations.
 
+🔍4. Integration with Government Portals
+Enable direct access to official government legal resources, judgments, and case status. Automate RTI (Right to Information) applications and legal aid requests.
+
+🏦5. Financial & Tax Law Advisory
+Extend capabilities to provide financial, tax, and corporate legal advice. Assist startups and businesses in legal compliance, GST, and company registration.
+
+🔗6. Blockchain-based Legal Document Verification
+Implement blockchain technology to ensure legal document authenticity. Secure digital signatures and timestamps for critical legal documents.
 ## 📜 License
 
 This project is licensed under the MIT License.
