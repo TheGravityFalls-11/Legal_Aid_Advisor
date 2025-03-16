@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Aid Advisor</title>
+    
+    <!-- Load CSS Correctly -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+
+    <!-- Load JavaScript Correctly -->
+    <script defer src="{% static 'js/chat.js' %}"></script>
+       
+    
+</head>
+<body>
+ 
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("{% static 'images/background.jpg' %}");
+     }
+    </style>
+    <div class="banner">
+        <div class="navbar">
+            <img src="{% static 'images/logo.jpg' %}" class="logo">
+            <ul>
+                <li><a href="{% url 'booking' %}">Booking</a></li>
+                <li><a href="#">Legal Knowledge</a></li>
+                <li><a href="http://127.0.0.1:5000">Legal Summarizer</a></li>
+                <li><a href="{% url 'lawyer' %}">Lawyers</a></li>
+                <li><a href="#">Analysis</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h1 class="m1">YOUR BRIDGE TO JUSTICE</h1>
+            <p class="m2">Secure your rights with expert legal advice.<br> Book now and get 10% off!</p>
+            
+        </div>
+    </div>
+
+    <!-- Floating Chatbot Button -->
+    <div id="chatbot-icon">
+        💬
+    </div>
+
+    <!-- Chatbot Popup -->
+    <div id="chatbot-container" class="chatbot-hidden">
+        <div class="chat-header">
+            ⚖ Legal Aid Advisor
+            <span id="close-chat">✖</span>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <div class="bot-message">👋 Welcome! How can I assist you with legal queries?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Ask your legal question..." />
+            <button id="send-btn">➤</button>
+        </div>
+    </div>
+
+</body>
+</html>

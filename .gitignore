@@ -1,0 +1,15 @@
+# Ignore environment files
+.env
+Legal_summarizer/.env
+
+# Ignore database files
+db.sqlite3
+
+# Ignore virtual environments
+venv/
+__pycache__/
+
+# Ignore VS Code and system files
+.vscode/
+.idea/
+.DS_Store

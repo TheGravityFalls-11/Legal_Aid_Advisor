@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Aid Advisor - Booking</title>
+    <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="theme-switch">
+        <i class="fas fa-moon"></i>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider round"></span>
+        </label>
+        <i class="fas fa-sun"></i>
+    </div>
+
+    <div class="container">
+        <h1><i class="fas fa-balance-scale"></i> Legal Aid Advisor</h1>
+        <h2>Book a Consultation</h2>
+
+        <form id="bookingForm" class="booking-form" method="POST" action="/booking/">
+            {% csrf_token %}
+
+            <!-- Client Information -->
+            <div class="form-section">
+                <h3><i class="fas fa-user"></i> Client Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name*</label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                        <span class="input-icon"><i class="fas fa-user"></i></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name*</label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                        <span class="input-icon"><i class="fas fa-user"></i></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address*</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number*</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(123) 456-7890">
+                        <span class="input-icon"><i class="fas fa-phone"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address (Optional)</label>
+                    <textarea id="address" name="address" placeholder="Enter your complete address"></textarea>
+                    <span class="input-icon"><i class="fas fa-home"></i></span>
+                </div>
+            </div>
+
+            <!-- Lawyer Selection -->
+            <div class="form-section">
+                <h3><i class="fas fa-gavel"></i> Lawyer Selection</h3>
+                <div class="form-group">
+                    <label for="lawyer">Select Lawyer*</label>
+                    <select id="lawyer" name="lawyer" required>
+                        <option value="">Choose a lawyer</option>
+                        <option value="Alice Johnson"> Alice Johnson</option>
+                        <option value="Bob Smith">Bob Smith</option>
+                        <option value="Carol Williams">Carol Williams </option>
+                        <option value="David Brown">David Brown </option>
+                        <option value="Eva Davis">Eva Davis </option>
+                        <option value="Frank Miller">Frank Miller </option>
+                        <option value="Grace Wilson">Grace Wilson </option>
+                        <option value="Henry Moore">Henry Moore</option>
+                        <option value="Ivy Taylor">Ivy Taylor </option>
+                        <option value="Jack Anderson">Jack Anderson </option>
+                        <option value="Kathy Lee">Kathy Lee </option>
+                        <option value="Liam Johnson">Liam Johnson</option>
+                        <option value="Mia Brown">Mia Brown </option>
+                        <option value="Noah Smith">Noah Smith </option>
+                    </select>
+                    <span class="input-icon"><i class="fas fa-user-tie"></i></span>
+                </div>
+                <div class="form-group">
+                    <label for="specialization">Specialization*</label>
+                    <select id="specialization" name="specialization" required>
+                        <option value="">Select specialization</option>
+                        <option value="Criminal Law">Criminal Law</option>
+                        <option value="Civil Law">Civil Law</option>
+                        <option value="Corporate Law">Corporate Law</option>
+                        <option value="Family Law">Family Law</option>
+                    </select>
+                    <span class="input-icon"><i class="fas fa-balance-scale"></i></span>
+                </div>
+            </div>
+
+            <!-- Case Details -->
+            <div class="form-section">
+                <h3><i class="fas fa-folder-open"></i> Case Details</h3>
+                <div class="form-group">
+                    <label for="caseType">Case Type*</label>
+                    <select id="caseType" name="caseType" required>
+                        <option value="">Select case type</option>
+                        <option value="Criminal">Criminal</option>
+                        <option value="Civil">Civil</option>
+                        <option value="Family">Family</option>
+                        <option value="Corporate">Corporate</option>
+                    </select>
+                    <span class="input-icon"><i class="fas fa-briefcase"></i></span>
+                </div>
+                <div class="form-group">
+                    <label for="caseDescription">Case Description*</label>
+                    <textarea id="caseDescription" name="caseDescription" required placeholder="Provide a brief description of your case"></textarea>
+                    <span class="input-icon"><i class="fas fa-file-alt"></i></span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="consultationDate">Preferred Consultation Date*</label>
+                        <input type="date" id="consultationDate" name="consultationDate" required>
+                        <span class="input-icon"><i class="fas fa-calendar"></i></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="urgency">Urgency Level*</label>
+                        <select id="urgency" name="urgency" required>
+                            <option value="Normal">Normal</option>
+                            <option value="High">High</option>
+                            <option value="Emergency">Emergency</option>
+                        </select>
+                        <span class="input-icon"><i class="fas fa-exclamation-circle"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Details -->
+            <div class="form-section">
+                <h3><i class="fas fa-clipboard-check"></i> Booking Details</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="consultationMode">Consultation Mode*</label>
+                        <select id="consultationMode" name="consultationMode" required>
+                            <option value="In-person">In-person</option>
+                            <option value="Online">Online</option>
+                        </select>
+                        <span class="input-icon"><i class="fas fa-video"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Submit Booking
+            </button>
+        </form>
+    </div>
+
+    <script src="{% static 'js/booking.js' %}"></script>
+</body>
+</html>
