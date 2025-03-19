@@ -1,6 +1,6 @@
 # AI Legal Agent 👨‍⚖️
 
-## Overview
+## Overview of the Project
 
 AI Legal Agent is an advanced legal assistant designed to streamline legal workflows using artificial intelligence. This project offers multiple functionalities, making legal assistance more accessible and efficient.
 
