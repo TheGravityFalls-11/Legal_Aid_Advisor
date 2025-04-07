@@ -5,43 +5,372 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legal Aid Advisor</title>
-    
-    <!-- Load CSS Correctly -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
-
-    <!-- Load JavaScript Correctly -->
     <script defer src="{% static 'js/chat.js' %}"></script>
-       
-    
+    <style>
+        :root {
+    --primary-dark: #1e3a47;
+    --primary-teal: #20b2aa;
+    --primary-light-teal: #5fd3ca;
+    --accent-teal: #00e5ff;
+    --text-light: #ffffff;
+    --text-muted: #a0c8d7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #20b2aa, #1e3a47);
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo i {
+    margin-right: 10px;
+    font-size: 28px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--accent-teal);
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 0;
+}
+
+.hero-content {
+    width: 50%;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: var(--text-muted);
+    animation: fadeInUp 1.2s ease;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--accent-teal);
+    color: var(--primary-dark);
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    cursor: pointer;
+    animation: fadeInUp 1.4s ease;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.card {
+    background-color: rgba(30, 58, 71, 0.8);
+    border-radius: 10px;
+    padding: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: var(--primary-light-teal);
+}
+
+.card p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.read-more {
+    color: var(--accent-teal);
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+}
+
+.read-more:after {
+    content: "→";
+    margin-left: 5px;
+    transition: transform 0.3s;
+}
+
+.read-more:hover:after {
+    transform: translateX(5px);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    overflow-y: auto;
+    perspective: 1000px;
+}
+
+.modal-content {
+    background-color: var(--primary-dark);
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 800px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transform: rotateX(90deg);
+    transition: transform 0.5s;
+    transform-origin: top;
+}
+
+.modal.active .modal-content {
+    transform: rotateX(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-title {
+    font-size: 24px;
+    color: var(--primary-light-teal);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: var(--accent-teal);
+}
+
+.modal-body {
+    line-height: 1.6;
+}
+
+.modal-body h3 {
+    color: var(--primary-light-teal);
+    margin: 20px 0 10px;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+footer {
+    background-color: rgba(30, 58, 71, 0.8);
+    padding: 40px 0;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 30px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--primary-light-teal);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: var(--accent-teal);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 30px;
+    color: var(--text-muted);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-content {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .footer-content {
+        flex-direction: column;
+    }
+}
+    </style>   
+
 </head>
 <body>
- 
-    <style>
-        body {
-            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("{% static 'images/background.jpg' %}");
-     }
-    </style>
-    <div class="banner">
-        <div class="navbar">
-            <img src="{% static 'images/logo.jpg' %}" class="logo">
-            <ul>
-                <li><a href="{% url 'booking' %}">Booking</a></li>
-                <li><a href="#">Legal Knowledge</a></li>
-                <li><a href="http://127.0.0.1:5000">Legal Summarizer</a></li>
-                <li><a href="{% url 'lawyer' %}">Lawyers</a></li>
-                <li><a href="#">Analysis</a></li>
-            </ul>
-        </div>
+    <div id="vanta-bg"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i>⚖️</i> Legal Aid Advisor
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'booking' %}">Booking</a></li>
 
-        <div class="content">
-            <h1 class="m1">YOUR BRIDGE TO JUSTICE</h1>
-            <p class="m2">Secure your rights with expert legal advice.<br> Book now and get 10% off!</p>
-            
-        </div>
-    </div>
+                    <li><a href="{% url 'knowledge' %}">Legal Knowledge</a></li>
 
-    <!-- Floating Chatbot Button -->
+                    <li><a href="http://127.0.0.1:5000">Legal Summarizer</a></li>
+
+                    <li><a href="{% url 'lawyer' %}">Lawyers</a></li>
+
+                    <li><a href=" {% url 'court' %}">Near By Court</a></li>
+
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Expert Legal Advice When You Need It Most</h1>
+                <p>Our team of experienced attorneys is dedicated to providing accessible legal aid to those who need it. Get the representation you deserve.</p>
+                <a href="#consultation" class="btn">Book a Consultation</a>
+            </div>
+             <!-- Floating Chatbot Button -->
     <div id="chatbot-icon">
         💬
     </div>
@@ -61,5 +390,77 @@
         </div>
     </div>
 
+        </section>
+
+        <section id="services">
+            <h2>Our Legal Services</h2>
+            <div class="card-container">
+                <!-- Cards will be populated from the dataset -->
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Legal Aid Advisor</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Practice Areas</h3>
+                    <ul>
+                        <li><a href="#family-law">Family Law</a></li>
+                        <li><a href="#criminal-defense">Criminal Defense</a></li>
+                        <li><a href="#immigration">Immigration</a></li>
+                        <li><a href="#civil-rights">Civil Rights</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#blog">Legal Blog</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#pro-bono">Pro Bono Work</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>📞 (555) 123-4567</li>
+                        <li>✉️ info@legalaidadvisor.com</li>
+                        <li>🏢 123 Justice Ave, Suite 500</li>
+                        <li>⏰ Mon-Fri: 9am - 5pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Legal Aid Advisor. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div id="article-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Article Title</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/index.js' %}"></script>
+        
+       
+    
 </body>
 </html>
