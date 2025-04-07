@@ -8,7 +8,7 @@ def get_db_connection():
         return MySQLdb.connect(
             host="localhost", 
             user="root", 
-            password="Aastha1811", 
+            password="password", 
             database="legal_aid", 
             charset="utf8"
         )
