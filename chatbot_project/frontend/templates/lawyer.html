@@ -4,18 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lawyer Directory</title>
+    <title>Indian Legal Directory</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/lawyer.css' %}">
-    <script defer src="{% static 'js/lawyer.js' %}"></script>
 </head>
 <body>
+    <div id="vanta-bg"></div>
     
     <div class="container">
-        <h1>Lawyer Directory</h1>
-        <div class="lawyer-list" id="lawyer-list"></div>
+        <header>
+            <h1>Indian Legal Directory</h1>
+            <p class="subtitle">Connect with Top Legal Professionals Across India</p>
+        </header>
+
+        <div class="lawyers-grid" id="lawyers-grid"></div>
     </div>
 
-   
-    
+    <footer>
+        <div class="copyright">
+            &copy; 2025 Indian Legal Directory. All rights reserved.
+        </div>
+    </footer>
+<script src="{% static 'js/lawyer.js' %}"></script>
 </body>
 </html>
