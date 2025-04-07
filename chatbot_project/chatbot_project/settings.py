@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'legal_aid',
         'USER': 'root',  # Change to your MySQL username
-        'PASSWORD': 'Aastha1811',  # Change to your MySQL password
+        'PASSWORD': 'password',  # Change to your MySQL password
         'HOST': 'localhost',
         'PORT': '3306',
     }
