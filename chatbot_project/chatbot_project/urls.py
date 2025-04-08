@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from frontend.views import index, chat_page,signlogin , booking ,lawyer
+from frontend.views import index, chat_page,signlogin , booking ,lawyer,knowledge,court
 from frontend import views
 
 urlpatterns = [
@@ -12,6 +12,8 @@ urlpatterns = [
     path("case/", signlogin, name="case"),  #  Case Studys
     path("booking/", booking, name="booking"),  # Booking Page Route ✅
     path("lawyer/", lawyer, name="lawyer"),
+    path("knowledge/", knowledge, name="knowledge"),
+    path("court/", court, name="court") 
 
 
 ]
