@@ -8,7 +8,7 @@ def get_db_connection():
         return MySQLdb.connect(
             host="localhost", 
             user="root", 
-            password="password", 
+            password="Aastha1811", 
             database="legal_aid", 
             charset="utf8"
         )
@@ -131,4 +131,10 @@ def booking(request):
     return render(request, "booking.html")
 
 def lawyer(request):
-    return render(request, "lawyer.html")
+    return render(request,"lawyer.html")
+
+def knowledge(request):
+    return render(request,"knowledge.html")
+
+def court(request):
+    return render(request,"court.html")
