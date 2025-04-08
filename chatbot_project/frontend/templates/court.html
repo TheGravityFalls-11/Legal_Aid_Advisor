@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Courts Finder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Enhanced Animated Background - Matching the provided image */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #1a3a4a 0%, #2d5a6e 100%);
+            overflow: hidden;
+        }
+
+        .triangles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDEwKSI+PHBvbHlnb24gcG9pbnRzPSIwLDAsIDUwLDAsIDI1LDQzLjMiIGZpbGw9IiMxZTQ1NTgiIG9wYWNpdHk9IjAuMyIvPjxwb2x5Z29uIHBvaW50cz0iNTAsMCwgMTAwLDAsIDc1LDQzLjMiIGZpbGw9IiMyMzRlNjMiIG9wYWNpdHk9IjAuMiIvPjxwb2x5Z29uIHBvaW50cz0iMCwxMDAsIDUwLDEwMCwgMjUsNTYuNyIgZmlsbD0iIzI4NTg2ZiIgb3BhY2l0eT0iMC4yIi8+PHBvbHlnb24gcG9pbnRzPSI1MCwxMDAsIDEwMCwxMDAsIDc1LDU2LjciIGZpbGw9IiMxYzQxNTMiIG9wYWNpdHk9IjAuMyIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.6;
+            animation: pulse 15s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+        }
+
+        .light-effect {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 60s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            display: block;
+            pointer-events: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        /* Floating triangles with enhanced animation */
+        .floating-triangles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .triangle {
+            position: absolute;
+            opacity: 0.15;
+            transform-origin: center;
+            animation: float-triangle 20s infinite ease-in-out;
+        }
+
+        @keyframes float-triangle {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-30px) rotate(5deg) scale(1.05);
+            }
+            50% {
+                transform: translateY(0) rotate(10deg) scale(1);
+            }
+            75% {
+                transform: translateY(30px) rotate(5deg) scale(0.95);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+        }
+
+        /* Wave effect */
+        .wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(45deg, rgba(26, 58, 74, 0.3) 0%, rgba(45, 90, 110, 0.3) 100%);
+            opacity: 0.3;
+            transform-origin: center;
+        }
+
+        .wave1 {
+            animation: wave 15s infinite linear;
+        }
+
+        .wave2 {
+            animation: wave 20s infinite linear reverse;
+            opacity: 0.2;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: rotate(0deg) scale(1);
+                border-radius: 0%;
+            }
+            25% {
+                transform: rotate(1deg) scale(1.1);
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+            50% {
+                transform: rotate(0deg) scale(1);
+                border-radius: 50%;
+            }
+            75% {
+                transform: rotate(-1deg) scale(0.9);
+                border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+            }
+            100% {
+                transform: rotate(0deg) scale(1);
+                border-radius: 0%;
+            }
+        }
+
+        /* Glow effect */
+        .glow {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, rgba(38, 166, 154, 0) 70%);
+            animation: glow 10s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Courts Section */
+        .courts-section {
+            background: rgba(26, 58, 74, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .courts-section h2 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .courts-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #4ecdc4, #26a69a);
+            border-radius: 2px;
+        }
+
+        /* Dropdown */
+        .dropdown-container {
+            margin-bottom: 30px;
+        }
+
+        .dropdown-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #e0e0e0;
+        }
+
+        .region-dropdown {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background-color: rgba(26, 58, 74, 0.7);
+            font-size: 1rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+
+        .region-dropdown:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+        }
+
+        /* Courts List */
+        .courts-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .court-card {
+            background: rgba(38, 70, 86, 0.7);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .court-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(38, 166, 154, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .court-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(45, 82, 99, 0.8);
+        }
+
+        .court-card:hover::before {
+            opacity: 1;
+        }
+
+        .court-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .court-address {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .court-contact {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+        .court-type {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .high-court {
+            background: rgba(3, 169, 244, 0.2);
+            color: #81d4fa;
+        }
+
+        .district-court {
+            background: rgba(76, 175, 80, 0.2);
+            color: #a5d6a7;
+        }
+
+        .supreme-court {
+            background: rgba(244, 67, 54, 0.2);
+            color: #ef9a9a;
+        }
+
+        .family-court {
+            background: rgba(156, 39, 176, 0.2);
+            color: #ce93d8;
+        }
+
+        .consumer-court {
+            background: rgba(255, 152, 0, 0.2);
+            color: #ffcc80;
+        }
+
+        .no-courts {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px;
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .courts-section {
+                padding: 20px;
+            }
+            
+            .courts-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(78, 205, 196, 0.2);
+            border-radius: 50%;
+            border-top-color: #4ecdc4;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Read More Button - Similar to the image */
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            color: #4ecdc4;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #26a69a;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Animated Background - Matching the provided image -->
+    <div class="background">
+        <div class="triangles"></div>
+        <div class="light-effect"></div>
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="glow"></div>
+        <div class="particles" id="particles"></div>
+        <div class="floating-triangles" id="floating-triangles"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Indian Courts Finder</h1>
+            <p>Find information about courts across different regions of India. Select a state to view the courts in that area.</p>
+        </header>
+
+        <section class="courts-section">
+            <h2>Nearby Courts</h2>
+            
+            <div class="dropdown-container">
+                <label for="region" class="dropdown-label">Select State:</label>
+                <select id="region" class="region-dropdown">
+                    <option value="">-- Select a State --</option>
+                    <option value="andhra_pradesh">Andhra Pradesh</option>
+                    <option value="arunachal_pradesh">Arunachal Pradesh</option>
+                    <option value="assam">Assam</option>
+                    <option value="bihar">Bihar</option>
+                    <option value="chhattisgarh">Chhattisgarh</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="goa">Goa</option>
+                    <option value="gujarat">Gujarat</option>
+                    <option value="haryana">Haryana</option>
+                    <option value="himachal_pradesh">Himachal Pradesh</option>
+                    <option value="jharkhand">Jharkhand</option>
+                    <option value="karnataka">Karnataka</option>
+                    <option value="kerala">Kerala</option>
+                    <option value="madhya_pradesh">Madhya Pradesh</option>
+                    <option value="maharashtra">Maharashtra</option>
+                    <option value="manipur">Manipur</option>
+                    <option value="meghalaya">Meghalaya</option>
+                    <option value="mizoram">Mizoram</option>
+                    <option value="nagaland">Nagaland</option>
+                    <option value="odisha">Odisha</option>
+                    <option value="punjab">Punjab</option>
+                    <option value="rajasthan">Rajasthan</option>
+                    <option value="sikkim">Sikkim</option>
+                    <option value="tamil_nadu">Tamil Nadu</option>
+                    <option value="telangana">Telangana</option>
+                    <option value="tripura">Tripura</option>
+                    <option value="uttar_pradesh">Uttar Pradesh</option>
+                    <option value="uttarakhand">Uttarakhand</option>
+                    <option value="west_bengal">West Bengal</option>
+                </select>
+            </div>
+            
+            <div class="loading">
+                <div class="loading-spinner"></div>
+            </div>
+            
+            <div id="courts-list" class="courts-list">
+                <div class="no-courts">Please select a state to view courts</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Court data for different states in India (expanded with more courts)
+        const courtsData = {
+            andhra_pradesh: [
+                {
+                    name: "Andhra Pradesh High Court",
+                    address: "Nelapadu, Amaravati, Andhra Pradesh 522237",
+                    contact: "0866-2527700",
+                    type: "high-court"
+                },
+                {
+                    name: "Vijayawada District Court",
+                    address: "Vijayawada, Andhra Pradesh 520002",
+                    contact: "0866-2438100",
+                    type: "district-court"
+                },
+                {
+                    name: "Visakhapatnam District Court",
+                    address: "Visakhapatnam, Andhra Pradesh 530001",
+                    contact: "0891-2569482",
+                    type: "district-court"
+                },
+                {
+                    name: "Tirupati District Court",
+                    address: "Tirupati, Andhra Pradesh 517501",
+                    contact: "0877-2225871",
+                    type: "district-court"
+                },
+                {
+                    name: "Guntur District Court",
+                    address: "Guntur, Andhra Pradesh 522001",
+                    contact: "0863-2233063",
+                    type: "district-court"
+                },
+                {
+                    name: "Kurnool District Court",
+                    address: "Kurnool, Andhra Pradesh 518001",
+                    contact: "08518-228201",
+                    type: "district-court"
+                },
+                {
+                    name: "Vijayawada Family Court",
+                    address: "Vijayawada, Andhra Pradesh 520002",
+                    contact: "0866-2438150",
+                    type: "family-court"
+                },
+                {
+                    name: "Visakhapatnam Consumer Court",
+                    address: "Visakhapatnam, Andhra Pradesh 530001",
+                    contact: "0891-2569490",
+                    type: "consumer-court"
+                }
+            ],
+            arunachal_pradesh: [
+                {
+                    name: "Gauhati High Court - Itanagar Permanent Bench",
+                    address: "Naharlagun, Arunachal Pradesh 791110",
+                    contact: "0360-2244675",
+                    type: "high-court"
+                },
+                {
+                    name: "Itanagar District Court",
+                    address: "Itanagar, Arunachal Pradesh 791111",
+                    contact: "0360-2290629",
+                    type: "district-court"
+                },
+                {
+                    name: "Pasighat District Court",
+                    address: "Pasighat, Arunachal Pradesh 791102",
+                    contact: "0368-2222262",
+                    type: "district-court"
+                },
+                {
+                    name: "Tawang District Court",
+                    address: "Tawang, Arunachal Pradesh 790104",
+                    contact: "03794-222253",
+                    type: "district-court"
+                },
+                {
+                    name: "Bomdila District Court",
+                    address: "Bomdila, Arunachal Pradesh 790001",
+                    contact: "03782-222235",
+                    type: "district-court"
+                },
+                {
+                    name: "Itanagar Family Court",
+                    address: "Itanagar, Arunachal Pradesh 791111",
+                    contact: "0360-2290630",
+                    type: "family-court"
+                }
+            ],
+            assam: [
+                {
+                    name: "Gauhati High Court",
+                    address: "Guwahati, Assam 781001",
+                    contact: "0361-2602239",
+                    type: "high-court"
+                },
+                {
+                    name: "Guwahati District Court",
+                    address: "Guwahati, Assam 781001",
+                    contact: "0361-2540024",
+                    type: "district-court"
+                },
+                {
+                    name: "Dibrugarh District Court",
+                    address: "Dibrugarh, Assam 786001",
+                    contact: "0373-2300332",
+                    type: "district-court"
+                },
+                {
+                    name: "Jorhat District Court",
+                    address: "Jorhat, Assam 785001",
+                    contact: "0376-2320110",
+                    type: "district-court"
+                },
+                {
+                    name: "Silchar District Court",
+                    address: "Silchar, Assam 788001",
+                    contact: "03842-230839",
+                    type: "district-court"
+                },
+                {
+                    name: "Tezpur District Court",
+                    address: "Tezpur, Assam 784001",
+                    contact: "03712-220094",
+                    type: "district-court"
+                },
+                {
+                    name: "Guwahati Family Court",
+                    address: "Guwahati, Assam 781001",
+                    contact: "0361-2540025",
+                    type: "family-court"
+                },
+                {
+                    name: "Assam State Consumer Disputes Redressal Commission",
+                    address: "Guwahati, Assam 781001",
+                    contact: "0361-2608491",
+                    type: "consumer-court"
+                }
+            ],
+            bihar: [
+                {
+                    name: "Patna High Court",
+                    address: "Patna, Bihar 800001",
+                    contact: "0612-2504071",
+                    type: "high-court"
+                },
+                {
+                    name: "Patna District Court",
+                    address: "Patna, Bihar 800001",
+                    contact: "0612-2230123",
+                    type: "district-court"
+                },
+                {
+                    name: "Muzaffarpur District Court",
+                    address: "Muzaffarpur, Bihar 842001",
+                    contact: "0621-2200035",
+                    type: "district-court"
+                },
+                {
+                    name: "Gaya District Court",
+                    address: "Gaya, Bihar 823001",
+                    contact: "0631-2220042",
+                    type: "district-court"
+                },
+                {
+                    name: "Bhagalpur District Court",
+                    address: "Bhagalpur, Bihar 812001",
+                    contact: "0641-2420450",
+                    type: "district-court"
+                },
+                {
+                    name: "Darbhanga District Court",
+                    address: "Darbhanga, Bihar 846004",
+                    contact: "06272-250736",
+                    type: "district-court"
+                },
+                {
+                    name: "Patna Family Court",
+                    address: "Patna, Bihar 800001",
+                    contact: "0612-2230124",
+                    type: "family-court"
+                },
+                {
+                    name: "Bihar State Consumer Disputes Redressal Commission",
+                    address: "Patna, Bihar 800001",
+                    contact: "0612-2221141",
+                    type: "consumer-court"
+                }
+            ],
+            chhattisgarh: [
+                {
+                    name: "Chhattisgarh High Court",
+                    address: "Bodri, Bilaspur, Chhattisgarh 495220",
+                    contact: "07752-250033",
+                    type: "high-court"
+                },
+                {
+                    name: "Raipur District Court",
+                    address: "Raipur, Chhattisgarh 492001",
+                    contact: "0771-2429071",
+                    type: "district-court"
+                },
+                {
+                    name: "Bilaspur District Court",
+                    address: "Bilaspur, Chhattisgarh 495001",
+                    contact: "07752-240049",
+                    type: "district-court"
+                },
+                {
+                    name: "Durg District Court",
+                    address: "Durg, Chhattisgarh 491001",
+                    contact: "0788-2211444",
+                    type: "district-court"
+                },
+                {
+                    name: "Jagdalpur District Court",
+                    address: "Jagdalpur, Chhattisgarh 494001",
+                    contact: "07782-229806",
+                    type: "district-court"
+                },
+                {
+                    name: "Raipur Family Court",
+                    address: "Raipur, Chhattisgarh 492001",
+                    contact: "0771-2429072",
+                    type: "family-court"
+                },
+                {
+                    name: "Chhattisgarh State Consumer Disputes Redressal Commission",
+                    address: "Raipur, Chhattisgarh 492001",
+                    contact: "0771-2429073",
+                    type: "consumer-court"
+                }
+            ],
+            delhi: [
+                {
+                    name: "Supreme Court of India",
+                    address: "Tilak Marg, New Delhi, Delhi 110001",
+                    contact: "011-23388922",
+                    type: "supreme-court"
+                },
+                {
+                    name: "Delhi High Court",
+                    address: "Sher Shah Road, New Delhi, Delhi 110003",
+                    contact: "011-23383137",
+                    type: "high-court"
+                },
+                {
+                    name: "Patiala House Court",
+                    address: "India Gate, New Delhi, Delhi 110001",
+                    contact: "011-23384257",
+                    type: "district-court"
+                },
+                {
+                    name: "Tis Hazari Court",
+                    address: "Tis Hazari, Delhi 110054",
+                    contact: "011-23950581",
+                    type: "district-court"
+                },
+                {
+                    name: "Saket District Court",
+                    address: "Saket, New Delhi, Delhi 110017",
+                    contact: "011-29561474",
+                    type: "district-court"
+                },
+                {
+                    name: "Karkardooma Court",
+                    address: "Karkardooma, Delhi 110032",
+                    contact: "011-22302256",
+                    type: "district-court"
+                },
+                {
+                    name: "Rohini Court",
+                    address: "Rohini, Delhi 110085",
+                    contact: "011-27555873",
+                    type: "district-court"
+                },
+                {
+                    name: "Dwarka Court",
+                    address: "Dwarka, New Delhi, Delhi 110075",
+                    contact: "011-28042158",
+                    type: "district-court"
+                },
+                {
+                    name: "Delhi Family Court",
+                    address: "Tis Hazari, Delhi 110054",
+                    contact: "011-23950582",
+                    type: "family-court"
+                },
+                {
+                    name: "Delhi State Consumer Disputes Redressal Commission",
+                    address: "Institutional Area, New Delhi, Delhi 110016",
+                    contact: "011-26566931",
+                    type: "consumer-court"
+                }
+            ],
+            goa: [
+                {
+                    name: "Bombay High Court - Goa Bench",
+                    address: "Panaji, Goa 403001",
+                    contact: "0832-2421169",
+                    type: "high-court"
+                },
+                {
+                    name: "North Goa District Court",
+                    address: "Panaji, Goa 403001",
+                    contact: "0832-2420531",
+                    type: "district-court"
+                },
+                {
+                    name: "South Goa District Court",
+                    address: "Margao, Goa 403601",
+                    contact: "0832-2715146",
+                    type: "district-court"
+                },
+                {
+                    name: "Mapusa Court",
+                    address: "Mapusa, Goa 403507",
+                    contact: "0832-2262678",
+                    type: "district-court"
+                },
+                {
+                    name: "Vasco Court",
+                    address: "Vasco da Gama, Goa 403802",
+                    contact: "0832-2513167",
+                    type: "district-court"
+                },
+                {
+                    name: "Goa Family Court",
+                    address: "Panaji, Goa 403001",
+                    contact: "0832-2420532",
+                    type: "family-court"
+                },
+                {
+                    name: "Goa State Consumer Disputes Redressal Commission",
+                    address: "Panaji, Goa 403001",
+                    contact: "0832-2421550",
+                    type: "consumer-court"
+                }
+            ],
+            gujarat: [
+                {
+                    name: "Gujarat High Court",
+                    address: "Sola, Ahmedabad, Gujarat 380060",
+                    contact: "079-27663300",
+                    type: "high-court"
+                },
+                {
+                    name: "Ahmedabad City Civil Court",
+                    address: "Bhadra, Ahmedabad, Gujarat 380001",
+                    contact: "079-25506279",
+                    type: "district-court"
+                },
+                {
+                    name: "Surat District Court",
+                    address: "Athwalines, Surat, Gujarat 395001",
+                    contact: "0261-2652566",
+                    type: "district-court"
+                },
+                {
+                    name: "Rajkot District Court",
+                    address: "Rajkot, Gujarat 360001",
+                    contact: "0281-2476535",
+                    type: "district-court"
+                },
+                {
+                    name: "Vadodara District Court",
+                    address: "Vadodara, Gujarat 390001",
+                    contact: "0265-2423200",
+                    type: "district-court"
+                },
+                {
+                    name: "Gandhinagar District Court",
+                    address: "Gandhinagar, Gujarat 382010",
+                    contact: "079-23256126",
+                    type: "district-court"
+                },
+                {
+                    name: "Jamnagar District Court",
+                    address: "Jamnagar, Gujarat 361001",
+                    contact: "0288-2550223",
+                    type: "district-court"
+                },
+                {
+                    name: "Ahmedabad Family Court",
+                    address: "Ahmedabad, Gujarat 380001",
+                    contact: "079-25506280",
+                    type: "family-court"
+                },
+                {
+                    name: "Gujarat State Consumer Disputes Redressal Commission",
+                    address: "Ahmedabad, Gujarat 380009",
+                    contact: "079-27545811",
+                    type: "consumer-court"
+                }
+            ],
+            haryana: [
+                {
+                    name: "Punjab and Haryana High Court",
+                    address: "Sector 1, Chandigarh 160001",
+                    contact: "0172-2740673",
+                    type: "high-court"
+                },
+                {
+                    name: "Gurugram District Court",
+                    address: "Gurugram, Haryana 122001",
+                    contact: "0124-2322100",
+                    type: "district-court"
+                },
+                {
+                    name: "Faridabad District Court",
+                    address: "Faridabad, Haryana 121001",
+                    contact: "0129-2227888",
+                    type: "district-court"
+                },
+                {
+                    name: "Ambala District Court",
+                    address: "Ambala, Haryana 133001",
+                    contact: "0171-2553300",
+                    type: "district-court"
+                },
+                {
+                    name: "Hisar District Court",
+                    address: "Hisar, Haryana 125001",
+                    contact: "01662-270201",
+                    type: "district-court"
+                },
+                {
+                    name: "Panipat District Court",
+                    address: "Panipat, Haryana 132103",
+                    contact: "0180-2651348",
+                    type: "district-court"
+                },
+                {
+                    name: "Gurugram Family Court",
+                    address: "Gurugram, Haryana 122001",
+                    contact: "0124-2322101",
+                    type: "family-court"
+                },
+                {
+                    name: "Haryana State Consumer Disputes Redressal Commission",
+                    address: "Panchkula, Haryana 134109",
+                    contact: "0172-2582509",
+                    type: "consumer-court"
+                }
+            ],
+            himachal_pradesh: [
+                {
+                    name: "Himachal Pradesh High Court",
+                    address: "Shimla, Himachal Pradesh 171001",
+                    contact: "0177-2650326",
+                    type: "high-court"
+                },
+                {
+                    name: "Shimla District Court",
+                    address: "Shimla, Himachal Pradesh 171001",
+                    contact: "0177-2652481",
+                    type: "district-court"
+                },
+                {
+                    name: "Dharamshala District Court",
+                    address: "Dharamshala, Himachal Pradesh 176215",
+                    contact: "01892-223224",
+                    type: "district-court"
+                },
+                {
+                    name: "Mandi District Court",
+                    address: "Mandi, Himachal Pradesh 175001",
+                    contact: "01905-225027",
+                    type: "district-court"
+                },
+                {
+                    name: "Solan District Court",
+                    address: "Solan, Himachal Pradesh 173212",
+                    contact: "01792-223263",
+                    type: "district-court"
+                },
+                {
+                    name: "Shimla Family Court",
+                    address: "Shimla, Himachal Pradesh 171001",
+                    contact: "0177-2652482",
+                    type: "family-court"
+                },
+                {
+                    name: "Himachal Pradesh State Consumer Disputes Redressal Commission",
+                    address: "Shimla, Himachal Pradesh 171001",
+                    contact: "0177-2621904",
+                    type: "consumer-court"
+                }
+            ],
+            jharkhand: [
+                {
+                    name: "Jharkhand High Court",
+                    address: "Ranchi, Jharkhand 834001",
+                    contact: "0651-2482710",
+                    type: "high-court"
+                },
+                {
+                    name: "Ranchi District Court",
+                    address: "Ranchi, Jharkhand 834001",
+                    contact: "0651-2482300",
+                    type: "district-court"
+                },
+                {
+                    name: "Jamshedpur District Court",
+                    address: "Jamshedpur, Jharkhand 831001",
+                    contact: "0657-2232087",
+                    type: "district-court"
+                },
+                {
+                    name: "Dhanbad District Court",
+                    address: "Dhanbad, Jharkhand 826001",
+                    contact: "0326-2312401",
+                    type: "district-court"
+                },
+                {
+                    name: "Bokaro District Court",
+                    address: "Bokaro, Jharkhand 827001",
+                    contact: "06542-221644",
+                    type: "district-court"
+                },
+                {
+                    name: "Hazaribagh District Court",
+                    address: "Hazaribagh, Jharkhand 825301",
+                    contact: "06546-222057",
+                    type: "district-court"
+                },
+                {
+                    name: "Ranchi Family Court",
+                    address: "Ranchi, Jharkhand 834001",
+                    contact: "0651-2482301",
+                    type: "family-court"
+                },
+                {
+                    name: "Jharkhand State Consumer Disputes Redressal Commission",
+                    address: "Ranchi, Jharkhand 834001",
+                    contact: "0651-2491824",
+                    type: "consumer-court"
+                }
+            ],
+            karnataka: [
+                {
+                    name: "Karnataka High Court",
+                    address: "High Court Road, Bengaluru, Karnataka 560001",
+                    contact: "080-22954864",
+                    type: "high-court"
+                },
+                {
+                    name: "Bengaluru City Civil Court",
+                    address: "Mayo Hall, Bengaluru, Karnataka 560001",
+                    contact: "080-25581395",
+                    type: "district-court"
+                },
+                {
+                    name: "Mysore District Court",
+                    address: "Mysore, Karnataka 570001",
+                    contact: "0821-2429290",
+                    type: "district-court"
+                },
+                {
+                    name: "Mangalore District Court",
+                    address: "Mangalore, Karnataka 575001",
+                    contact: "0824-2425387",
+                    type: "district-court"
+                },
+                {
+                    name: "Hubli District Court",
+                    address: "Hubli, Karnataka 580029",
+                    contact: "0836-2366716",
+                    type: "district-court"
+                },
+                {
+                    name: "Belgaum District Court",
+                    address: "Belgaum, Karnataka 590001",
+                    contact: "0831-2407366",
+                    type: "district-court"
+                },
+                {
+                    name: "Bengaluru Family Court",
+                    address: "Bengaluru, Karnataka 560001",
+                    contact: "080-25581396",
+                    type: "family-court"
+                },
+                {
+                    name: "Karnataka State Consumer Disputes Redressal Commission",
+                    address: "Bengaluru, Karnataka 560001",
+                    contact: "080-22124175",
+                    type: "consumer-court"
+                }
+            ],
+            kerala: [
+                {
+                    name: "Kerala High Court",
+                    address: "Ernakulam, Kochi, Kerala 682031",
+                    contact: "0484-2562725",
+                    type: "high-court"
+                },
+                {
+                    name: "Thiruvananthapuram District Court",
+                    address: "Vanchiyoor, Thiruvananthapuram, Kerala 695035",
+                    contact: "0471-2471575",
+                    type: "district-court"
+                },
+                {
+                    name: "Kochi District Court",
+                    address: "Ernakulam, Kochi, Kerala 682031",
+                    contact: "0484-2394855",
+                    type: "district-court"
+                },
+                {
+                    name: "Kozhikode District Court",
+                    address: "Kozhikode, Kerala 673001",
+                    contact: "0495-2366100",
+                    type: "district-court"
+                },
+                {
+                    name: "Thrissur District Court",
+                    address: "Thrissur, Kerala 680001",
+                    contact: "0487-2423150",
+                    type: "district-court"
+                },
+                {
+                    name: "Kollam District Court",
+                    address: "Kollam, Kerala 691001",
+                    contact: "0474-2742979",
+                    type: "district-court"
+                },
+                {
+                    name: "Kochi Family Court",
+                    address: "Ernakulam, Kochi, Kerala 682031",
+                    contact: "0484-2394856",
+                    type: "family-court"
+                },
+                {
+                    name: "Kerala State Consumer Disputes Redressal Commission",
+                    address: "Thiruvananthapuram, Kerala 695033",
+                    contact: "0471-2310970",
+                    type: "consumer-court"
+                }
+            ],
+            madhya_pradesh: [
+                {
+                    name: "Madhya Pradesh High Court",
+                    address: "Jabalpur, Madhya Pradesh 482001",
+                    contact: "0761-2623300",
+                    type: "high-court"
+                },
+                {
+                    name: "Indore Bench of Madhya Pradesh High Court",
+                    address: "Indore, Madhya Pradesh 452001",
+                    contact: "0731-2492800",
+                    type: "high-court"
+                },
+                {
+                    name: "Gwalior Bench of Madhya Pradesh High Court",
+                    address: "Gwalior, Madhya Pradesh 474001",
+                    contact: "0751-2340401",
+                    type: "high-court"
+                },
+                {
+                    name: "Bhopal District Court",
+                    address: "Bhopal, Madhya Pradesh 462001",
+                    contact: "0755-2554222",
+                    type: "district-court"
+                },
+                {
+                    name: "Indore District Court",
+                    address: "Indore, Madhya Pradesh 452001",
+                    contact: "0731-2494600",
+                    type: "district-court"
+                },
+                {
+                    name: "Jabalpur District Court",
+                    address: "Jabalpur, Madhya Pradesh 482001",
+                    contact: "0761-2624401",
+                    type: "district-court"
+                },
+                {
+                    name: "Gwalior District Court",
+                    address: "Gwalior, Madhya Pradesh 474001",
+                    contact: "0751-2342401",
+                    type: "district-court"
+                },
+                {
+                    name: "Bhopal Family Court",
+                    address: "Bhopal, Madhya Pradesh 462001",
+                    contact: "0755-2554223",
+                    type: "family-court"
+                },
+                {
+                    name: "Madhya Pradesh State Consumer Disputes Redressal Commission",
+                    address: "Bhopal, Madhya Pradesh 462001",
+                    contact: "0755-2551263",
+                    type: "consumer-court"
+                }
+            ],
+            maharashtra: [
+                {
+                    name: "Bombay High Court",
+                    address: "Fort, Mumbai, Maharashtra 400032",
+                    contact: "022-22670700",
+                    type: "high-court"
+                },
+                {
+                    name: "Nagpur Bench of Bombay High Court",
+                    address: "Civil Lines, Nagpur, Maharashtra 440001",
+                    contact: "0712-2562182",
+                    type: "high-court"
+                },
+                {
+                    name: "Aurangabad Bench of Bombay High Court",
+                    address: "Aurangabad, Maharashtra 431001",
+                    contact: "0240-2331187",
+                    type: "high-court"
+                },
+                {
+                    name: "Mumbai City Civil Court",
+                    address: "Fort, Mumbai, Maharashtra 400001",
+                    contact: "022-22620242",
+                    type: "district-court"
+                },
+                {
+                    name: "Pune District Court",
+                    address: "Shivajinagar, Pune, Maharashtra 411005",
+                    contact: "020-25534000",
+                    type: "district-court"
+                },
+                {
+                    name: "Nagpur District Court",
+                    address: "Civil Lines, Nagpur, Maharashtra 440001",
+                    contact: "0712-2564695",
+                    type: "district-court"
+                },
+                {
+                    name: "Thane District Court",
+                    address: "Thane, Maharashtra 400601",
+                    contact: "022-25421753",
+                    type: "district-court"
+                },
+                {
+                    name: "Aurangabad District Court",
+                    address: "Aurangabad, Maharashtra 431001",
+                    contact: "0240-2334501",
+                    type: "district-court"
+                },
+                {
+                    name: "Nashik District Court",
+                    address: "Nashik, Maharashtra 422001",
+                    contact: "0253-2314601",
+                    type: "district-court"
+                },
+                {
+                    name: "Mumbai Family Court",
+                    address: "Bandra, Mumbai, Maharashtra 400051",
+                    contact: "022-26422103",
+                    type: "family-court"
+                },
+                {
+                    name: "Maharashtra State Consumer Disputes Redressal Commission",
+                    address: "Mumbai, Maharashtra 400001",
+                    contact: "022-22617605",
+                    type: "consumer-court"
+                }
+            ],
+            manipur: [
+                {
+                    name: "Manipur High Court",
+                    address: "Imphal, Manipur 795001",
+                    contact: "0385-2410522",
+                    type: "high-court"
+                },
+                {
+                    name: "Imphal District Court",
+                    address: "Imphal, Manipur 795001",
+                    contact: "0385-2450487",
+                    type: "district-court"
+                },
+                {
+                    name: "Thoubal District Court",
+                    address: "Thoubal, Manipur 795138",
+                    contact: "03848-222235",
+                    type: "district-court"
+                },
+                {
+                    name: "Churachandpur District Court",
+                    address: "Churachandpur, Manipur 795128",
+                    contact: "03874-234567",
+                    type: "district-court"
+                },
+                {
+                    name: "Imphal Family Court",
+                    address: "Imphal, Manipur 795001",
+                    contact: "0385-2450488",
+                    type: "family-court"
+                },
+                {
+                    name: "Manipur State Consumer Disputes Redressal Commission",
+                    address: "Imphal, Manipur 795001",
+                    contact: "0385-2451764",
+                    type: "consumer-court"
+                }
+            ],
+            meghalaya: [
+                {
+                    name: "Meghalaya High Court",
+                    address: "Shillong, Meghalaya 793001",
+                    contact: "0364-2224661",
+                    type: "high-court"
+                },
+                {
+                    name: "Shillong District Court",
+                    address: "Shillong, Meghalaya 793001",
+                    contact: "0364-2224674",
+                    type: "district-court"
+                },
+                {
+                    name: "Tura District Court",
+                    address: "Tura, Meghalaya 794001",
+                    contact: "03651-222235",
+                    type: "district-court"
+                },
+                {
+                    name: "Jowai District Court",
+                    address: "Jowai, Meghalaya 793150",
+                    contact: "03652-221235",
+                    type: "district-court"
+                },
+                {
+                    name: "Shillong Family Court",
+                    address: "Shillong, Meghalaya 793001",
+                    contact: "0364-2224675",
+                    type: "family-court"
+                },
+                {
+                    name: "Meghalaya State Consumer Disputes Redressal Commission",
+                    address: "Shillong, Meghalaya 793001",
+                    contact: "0364-2226460",
+                    type: "consumer-court"
+                }
+            ],
+            mizoram: [
+                {
+                    name: "Gauhati High Court - Aizawl Bench",
+                    address: "Aizawl, Mizoram 796001",
+                    contact: "0389-2324222",
+                    type: "high-court"
+                },
+                {
+                    name: "Aizawl District Court",
+                    address: "Aizawl, Mizoram 796001",
+                    contact: "0389-2324223",
+                    type: "district-court"
+                },
+                {
+                    name: "Lunglei District Court",
+                    address: "Lunglei, Mizoram 796701",
+                    contact: "0372-2324567",
+                    type: "district-court"
+                },
+                {
+                    name: "Champhai District Court",
+                    address: "Champhai, Mizoram 796321",
+                    contact: "03831-234567",
+                    type: "district-court"
+                },
+                {
+                    name: "Aizawl Family Court",
+                    address: "Aizawl, Mizoram 796001",
+                    contact: "0389-2324224",
+                    type: "family-court"
+                },
+                {
+                    name: "Mizoram State Consumer Disputes Redressal Commission",
+                    address: "Aizawl, Mizoram 796001",
+                    contact: "0389-2316119",
+                    type: "consumer-court"
+                }
+            ],
+            nagaland: [
+                {
+                    name: "Gauhati High Court - Kohima Bench",
+                    address: "Kohima, Nagaland 797001",
+                    contact: "0370-2270355",
+                    type: "high-court"
+                },
+                {
+                    name: "Kohima District Court",
+                    address: "Kohima, Nagaland 797001",
+                    contact: "0370-2270356",
+                    type: "district-court"
+                },
+                {
+                    name: "Dimapur District Court",
+                    address: "Dimapur, Nagaland 797112",
+                    contact: "03862-248091",
+                    type: "district-court"
+                },
+                {
+                    name: "Mokokchung District Court",
+                    address: "Mokokchung, Nagaland 798601",
+                    contact: "0369-2226235",
+                    type: "district-court"
+                },
+                {
+                    name: "Kohima Family Court",
+                    address: "Kohima, Nagaland 797001",
+                    contact: "0370-2270357",
+                    type: "family-court"
+                },
+                {
+                    name: "Nagaland State Consumer Disputes Redressal Commission",
+                    address: "Kohima, Nagaland 797001",
+                    contact: "0370-2243256",
+                    type: "consumer-court"
+                }
+            ],
+            odisha: [
+                {
+                    name: "Orissa High Court",
+                    address: "Cuttack, Odisha 753002",
+                    contact: "0671-2508100",
+                    type: "high-court"
+                },
+                {
+                    name: "Cuttack District Court",
+                    address: "Cuttack, Odisha 753002",
+                    contact: "0671-2308100",
+                    type: "district-court"
+                },
+                {
+                    name: "Bhubaneswar District Court",
+                    address: "Bhubaneswar, Odisha 751001",
+                    contact: "0674-2394234",
+                    type: "district-court"
+                },
+                {
+                    name: "Berhampur District Court",
+                    address: "Berhampur, Odisha 760001",
+                    contact: "0680-2225235",
+                    type: "district-court"
+                },
+                {
+                    name: "Sambalpur District Court",
+                    address: "Sambalpur, Odisha 768001",
+                    contact: "0663-2520235",
+                    type: "district-court"
+                },
+                {
+                    name: "Rourkela District Court",
+                    address: "Rourkela, Odisha 769001",
+                    contact: "0661-2500235",
+                    type: "district-court"
+                },
+                {
+                    name: "Cuttack Family Court",
+                    address: "Cuttack, Odisha 753002",
+                    contact: "0671-2308101",
+                    type: "family-court"
+                },
+                {
+                    name: "Odisha State Consumer Disputes Redressal Commission",
+                    address: "Cuttack, Odisha 753002",
+                    contact: "0671-2301583",
+                    type: "consumer-court"
+                }
+            ],
+            punjab: [
+                {
+                    name: "Punjab and Haryana High Court",
+                    address: "Sector 1, Chandigarh 160001",
+                    contact: "0172-2740673",
+                    type: "high-court"
+                },
+                {
+                    name: "Amritsar District Court",
+                    address: "Amritsar, Punjab 143001",
+                    contact: "0183-2226565",
+                    type: "district-court"
+                },
+                {
+                    name: "Ludhiana District Court",
+                    address: "Ludhiana, Punjab 141001",
+                    contact: "0161-2444276",
+                    type: "district-court"
+                },
+                {
+                    name: "Patiala District Court",
+                    address: "Patiala, Punjab 147001",
+                    contact: "0175-2214501",
+                    type: "district-court"
+                },
+                {
+                    name: "Jalandhar District Court",
+                    address: "Jalandhar, Punjab 144001",
+                    contact: "0181-2224041",
+                    type: "district-court"
+                },
+                {
+                    name: "Bathinda District Court",
+                    address: "Bathinda, Punjab 151001",
+                    contact: "0164-2211313",
+                    type: "district-court"
+                },
+                {
+                    name: "Mohali District Court",
+                    address: "Mohali, Punjab 160062",
+                    contact: "0172-2214501",
+                    type: "district-court"
+                },
+                {
+                    name: "Ludhiana Family Court",
+                    address: "Ludhiana, Punjab 141001",
+                    contact: "0161-2444277",
+                    type: "family-court"
+                },
+                {
+                    name: "Punjab State Consumer Disputes Redressal Commission",
+                    address: "Chandigarh 160017",
+                    contact: "0172-2704488",
+                    type: "consumer-court"
+                }
+            ],
+            rajasthan: [
+                {
+                    name: "Rajasthan High Court",
+                    address: "Jodhpur, Rajasthan 342001",
+                    contact: "0291-2541338",
+                    type: "high-court"
+                },
+                {
+                    name: "Jaipur Bench of Rajasthan High Court",
+                    address: "Jaipur, Rajasthan 302005",
+                    contact: "0141-2227481",
+                    type: "high-court"
+                },
+                {
+                    name: "Jaipur District Court",
+                    address: "Bani Park, Jaipur, Rajasthan 302016",
+                    contact: "0141-2200833",
+                    type: "district-court"
+                },
+                {
+                    name: "Jodhpur District Court",
+                    address: "Jodhpur, Rajasthan 342001",
+                    contact: "0291-2650253",
+                    type: "district-court"
+                },
+                {
+                    name: "Udaipur District Court",
+                    address: "Udaipur, Rajasthan 313001",
+                    contact: "0294-2413955",
+                    type: "district-court"
+                },
+                {
+                    name: "Kota District Court",
+                    address: "Kota, Rajasthan 324001",
+                    contact: "0744-2327075",
+                    type: "district-court"
+                },
+                {
+                    name: "Bikaner District Court",
+                    address: "Bikaner, Rajasthan 334001",
+                    contact: "0151-2226041",
+                    type: "district-court"
+                },
+                {
+                    name: "Ajmer District Court",
+                    address: "Ajmer, Rajasthan 305001",
+                    contact: "0145-2627421",
+                    type: "district-court"
+                },
+                {
+                    name: "Jaipur Family Court",
+                    address: "Jaipur, Rajasthan 302016",
+                    contact: "0141-2200834",
+                    type: "family-court"
+                },
+                {
+                    name: "Rajasthan State Consumer Disputes Redressal Commission",
+                    address: "Jaipur, Rajasthan 302005",
+                    contact: "0141-2227448",
+                    type: "consumer-court"
+                }
+            ],
+            sikkim: [
+                {
+                    name: "Sikkim High Court",
+                    address: "Gangtok, Sikkim 737101",
+                    contact: "03592-203753",
+                    type: "high-court"
+                },
+                {
+                    name: "Gangtok District Court",
+                    address: "Gangtok, Sikkim 737101",
+                    contact: "03592-203754",
+                    type: "district-court"
+                },
+                {
+                    name: "Namchi District Court",
+                    address: "Namchi, Sikkim 737126",
+                    contact: "03595-264019",
+                    type: "district-court"
+                },
+                {
+                    name: "Mangan District Court",
+                    address: "Mangan, Sikkim 737116",
+                    contact: "03592-234567",
+                    type: "district-court"
+                },
+                {
+                    name: "Gangtok Family Court",
+                    address: "Gangtok, Sikkim 737101",
+                    contact: "03592-203755",
+                    type: "family-court"
+                },
+                {
+                    name: "Sikkim State Consumer Disputes Redressal Commission",
+                    address: "Gangtok, Sikkim 737101",
+                    contact: "03592-205848",
+                    type: "consumer-court"
+                }
+            ],
+            tamil_nadu: [
+                {
+                    name: "Madras High Court",
+                    address: "High Court Road, Chennai, Tamil Nadu 600104",
+                    contact: "044-25301349",
+                    type: "high-court"
+                },
+                {
+                    name: "Madurai Bench of Madras High Court",
+                    address: "Madurai, Tamil Nadu 625023",
+                    contact: "0452-2539040",
+                    type: "high-court"
+                },
+                {
+                    name: "Chennai City Civil Court",
+                    address: "George Town, Chennai, Tamil Nadu 600001",
+                    contact: "044-25342212",
+                    type: "district-court"
+                },
+                {
+                    name: "Coimbatore District Court",
+                    address: "Race Course, Coimbatore, Tamil Nadu 641018",
+                    contact: "0422-2222950",
+                    type: "district-court"
+                },
+                {
+                    name: "Madurai District Court",
+                    address: "Madurai, Tamil Nadu 625020",
+                    contact: "0452-2534273",
+                    type: "district-court"
+                },
+                {
+                    name: "Salem District Court",
+                    address: "Salem, Tamil Nadu 636007",
+                    contact: "0427-2447166",
+                    type: "district-court"
+                },
+                {
+                    name: "Tirunelveli District Court",
+                    address: "Tirunelveli, Tamil Nadu 627002",
+                    contact: "0462-2572323",
+                    type: "district-court"
+                },
+                {
+                    name: "Trichy District Court",
+                    address: "Trichy, Tamil Nadu 620001",
+                    contact: "0431-2414392",
+                    type: "district-court"
+                },
+                {
+                    name: "Chennai Family Court",
+                    address: "Chennai, Tamil Nadu 600104",
+                    contact: "044-25340715",
+                    type: "family-court"
+                },
+                {
+                    name: "Tamil Nadu State Consumer Disputes Redressal Commission",
+                    address: "Chennai, Tamil Nadu 600104",
+                    contact: "044-28592828",
+                    type: "consumer-court"
+                }
+            ],
+            telangana: [
+                {
+                    name: "Telangana High Court",
+                    address: "Hyderabad, Telangana 500066",
+                    contact: "040-23599224",
+                    type: "high-court"
+                },
+                {
+                    name: "Hyderabad City Civil Court",
+                    address: "Hyderabad, Telangana 500004",
+                    contact: "040-24567890",
+                    type: "district-court"
+                },
+                {
+                    name: "Warangal District Court",
+                    address: "Warangal, Telangana 506002",
+                    contact: "0870-2577901",
+                    type: "district-court"
+                },
+                {
+                    name: "Nizamabad District Court",
+                    address: "Nizamabad, Telangana 503001",
+                    contact: "08462-234567",
+                    type: "district-court"
+                },
+                {
+                    name: "Karimnagar District Court",
+                    address: "Karimnagar, Telangana 505001",
+                    contact: "0878-2243567",
+                    type: "district-court"
+                },
+                {
+                    name: "Khammam District Court",
+                    address: "Khammam, Telangana 507002",
+                    contact: "08742-241234",
+                    type: "district-court"
+                },
+                {
+                    name: "Hyderabad Family Court",
+                    address: "Hyderabad, Telangana 500004",
+                    contact: "040-24567891",
+                    type: "family-court"
+                },
+                {
+                    name: "Telangana State Consumer Disputes Redressal Commission",
+                    address: "Hyderabad, Telangana 500004",
+                    contact: "040-23320624",
+                    type: "consumer-court"
+                }
+            ],
+            tripura: [
+                {
+                    name: "Tripura High Court",
+                    address: "Agartala, Tripura 799001",
+                    contact: "0381-2225786",
+                    type: "high-court"
+                },
+                {
+                    name: "Agartala District Court",
+                    address: "Agartala, Tripura 799001",
+                    contact: "0381-2225787",
+                    type: "district-court"
+                },
+                {
+                    name: "Udaipur District Court",
+                    address: "Udaipur, Tripura 799120",
+                    contact: "03821-222345",
+                    type: "district-court"
+                },
+                {
+                    name: "Dharmanagar District Court",
+                    address: "Dharmanagar, Tripura 799250",
+                    contact: "03822-234567",
+                    type: "district-court"
+                },
+                {
+                    name: "Agartala Family Court",
+                    address: "Agartala, Tripura 799001",
+                    contact: "0381-2225788",
+                    type: "family-court"
+                },
+                {
+                    name: "Tripura State Consumer Disputes Redressal Commission",
+                    address: "Agartala, Tripura 799001",
+                    contact: "0381-2324081",
+                    type: "consumer-court"
+                }
+            ],
+            uttar_pradesh: [
+                {
+                    name: "Allahabad High Court",
+                    address: "Prayagraj, Uttar Pradesh 211001",
+                    contact: "0532-2420042",
+                    type: "high-court"
+                },
+                {
+                    name: "Lucknow Bench of Allahabad High Court",
+                    address: "Lucknow, Uttar Pradesh 226001",
+                    contact: "0522-2286191",
+                    type: "high-court"
+                },
+                {
+                    name: "Lucknow District Court",
+                    address: "Hazratganj, Lucknow, Uttar Pradesh 226001",
+                    contact: "0522-2286121",
+                    type: "district-court"
+                },
+                {
+                    name: "Varanasi District Court",
+                    address: "Varanasi, Uttar Pradesh 221001",
+                    contact: "0542-2504021",
+                    type: "district-court"
+                },
+                {
+                    name: "Kanpur District Court",
+                    address: "Kanpur, Uttar Pradesh 208001",
+                    contact: "0512-2311460",
+                    type: "district-court"
+                },
+                {
+                    name: "Prayagraj District Court",
+                    address: "Prayagraj, Uttar Pradesh 211001",
+                    contact: "0532-2420043",
+                    type: "district-court"
+                },
+                {
+                    name: "Meerut District Court",
+                    address: "Meerut, Uttar Pradesh 250001",
+                    contact: "0121-2643535",
+                    type: "district-court"
+                },
+                {
+                    name: "Agra District Court",
+                    address: "Agra, Uttar Pradesh 282001",
+                    contact: "0562-2850080",
+                    type: "district-court"
+                },
+                {
+                    name: "Ghaziabad District Court",
+                    address: "Ghaziabad, Uttar Pradesh 201001",
+                    contact: "0120-2790250",
+                    type: "district-court"
+                },
+                {
+                    name: "Noida District Court",
+                    address: "Noida, Uttar Pradesh 201301",
+                    contact: "0120-2454001",
+                    type: "district-court"
+                },
+                {
+                    name: "Lucknow Family Court",
+                    address: "Lucknow, Uttar Pradesh 226001",
+                    contact: "0522-2286122",
+                    type: "family-court"
+                },
+                {
+                    name: "Uttar Pradesh State Consumer Disputes Redressal Commission",
+                    address: "Lucknow, Uttar Pradesh 226001",
+                    contact: "0522-2740731",
+                    type: "consumer-court"
+                }
+            ],
+            uttarakhand: [
+                {
+                    name: "Uttarakhand High Court",
+                    address: "Nainital, Uttarakhand 263001",
+                    contact: "05942-235388",
+                    type: "high-court"
+                },
+                {
+                    name: "Dehradun District Court",
+                    address: "Dehradun, Uttarakhand 248001",
+                    contact: "0135-2712992",
+                    type: "district-court"
+                },
+                {
+                    name: "Nainital District Court",
+                    address: "Nainital, Uttarakhand 263001",
+                    contact: "05942-235389",
+                    type: "district-court"
+                },
+                {
+                    name: "Haridwar District Court",
+                    address: "Haridwar, Uttarakhand 249401",
+                    contact: "01334-265743",
+                    type: "district-court"
+                },
+                {
+                    name: "Haldwani District Court",
+                    address: "Haldwani, Uttarakhand 263139",
+                    contact: "05946-282234",
+                    type: "district-court"
+                },
+                {
+                    name: "Dehradun Family Court",
+                    address: "Dehradun, Uttarakhand 248001",
+                    contact: "0135-2712993",
+                    type: "family-court"
+                },
+                {
+                    name: "Uttarakhand State Consumer Disputes Redressal Commission",
+                    address: "Dehradun, Uttarakhand 248001",
+                    contact: "0135-2669275",
+                    type: "consumer-court"
+                }
+            ],
+            west_bengal: [
+                {
+                    name: "Calcutta High Court",
+                    address: "Esplanade Row, Kolkata, West Bengal 700001",
+                    contact: "033-22254741",
+                    type: "high-court"
+                },
+                {
+                    name: "Kolkata City Civil Court",
+                    address: "Dalhousie, Kolkata, West Bengal 700001",
+                    contact: "033-22486235",
+                    type: "district-court"
+                },
+                {
+                    name: "Siliguri District Court",
+                    address: "Siliguri, West Bengal 734001",
+                    contact: "0353-2512046",
+                    type: "district-court"
+                },
+                {
+                    name: "Asansol District Court",
+                    address: "Asansol, West Bengal 713301",
+                    contact: "0341-2250358",
+                    type: "district-court"
+                },
+                {
+                    name: "Howrah District Court",
+                    address: "Howrah, West Bengal 711101",
+                    contact: "033-26602424",
+                    type: "district-court"
+                },
+                {
+                    name: "Durgapur District Court",
+                    address: "Durgapur, West Bengal 713201",
+                    contact: "0343-2556420",
+                    type: "district-court"
+                },
+                {
+                    name: "Burdwan District Court",
+                    address: "Burdwan, West Bengal 713101",
+                    contact: "0342-2662425",
+                    type: "district-court"
+                },
+                {
+                    name: "Kolkata Family Court",
+                    address: "Kolkata, West Bengal 700001",
+                    contact: "033-22486236",
+                    type: "family-court"
+                },
+                {
+                    name: "West Bengal State Consumer Disputes Redressal Commission",
+                    address: "Kolkata, West Bengal 700001",
+                    contact: "033-22486237",
+                    type: "consumer-court"
+                }
+            ]
+        };
+
+        // Function to display courts for selected region
+        function displayCourts(region) {
+            const courtsListElement = document.getElementById('courts-list');
+            const loadingElement = document.querySelector('.loading');
+            
+            // Show loading animation
+            courtsListElement.style.display = 'none';
+            loadingElement.style.display = 'block';
+            
+            // Simulate loading delay for better UX
+            setTimeout(() => {
+                // Clear previous courts
+                courtsListElement.innerHTML = '';
+                
+                if (!region || !courtsData[region] || courtsData[region].length === 0) {
+                    courtsListElement.innerHTML = '<div class="no-courts">No courts found for this region. Please select another region.</div>';
+                } else {
+                    // Add courts for selected region
+                    courtsData[region].forEach(court => {
+                        const courtElement = document.createElement('div');
+                        courtElement.className = 'court-card';
+                        
+                        courtElement.innerHTML = `
+                            <span class="court-type ${court.type}">${formatCourtType(court.type)}</span>
+                            <h3 class="court-name">${court.name}</h3>
+                            <p class="court-address">${court.address}</p>
+                            <p class="court-contact">Contact: ${court.contact}</p>
+                            <a href="#" class="read-more">Read More</a>
+                        `;
+                        
+                        courtsListElement.appendChild(courtElement);
+                    });
+                }
+                
+                // Hide loading and show courts
+                loadingElement.style.display = 'none';
+                courtsListElement.style.display = 'grid';
+                
+                // Animate court cards appearance
+                const cards = document.querySelectorAll('.court-card');
+                cards.forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100 * index);
+                });
+                
+            }, 800); // Simulated loading time
+        }
+        
+        // Format court type for display
+        function formatCourtType(type) {
+            switch(type) {
+                case 'supreme-court':
+                    return 'Supreme Court';
+                case 'high-court':
+                    return 'High Court';
+                case 'district-court':
+                    return 'District Court';
+                case 'family-court':
+                    return 'Family Court';
+                case 'consumer-court':
+                    return 'Consumer Court';
+                default:
+                    return 'Court';
+            }
+        }
+        
+        // Event listener for dropdown change
+        document.getElementById('region').addEventListener('change', function() {
+            displayCourts(this.value);
+        });
+        
+        // Initialize with empty state
+        displayCourts('');
+        
+        // Create floating triangles for background animation
+        function createFloatingTriangles() {
+            const container = document.getElementById('floating-triangles');
+            const colors = ['#1a3a4a', '#1e4558', '#234e63', '#28586f', '#1c4153'];
+            
+            for (let i = 0; i < 15; i++) {
+                const triangle = document.createElement('div');
+                triangle.className = 'triangle';
+                
+                // Random size between 50px and 150px
+                const size = Math.random() * 100 + 50;
+                
+                // Create SVG triangle
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('width', size);
+                svg.setAttribute('height', size);
+                svg.setAttribute('viewBox', '0 0 100 100');
+                
+                const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                polygon.setAttribute('points', '50,0 0,100 100,100');
+                polygon.setAttribute('fill', colors[Math.floor(Math.random() * colors.length)]);
+                
+                svg.appendChild(polygon);
+                triangle.appendChild(svg);
+                
+                // Random position
+                triangle.style.left = `${Math.random() * 100}%`;
+                triangle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration and delay
+                triangle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                triangle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(triangle);
+            }
+        }
+        
+        // Create particles for background animation
+        function createParticles() {
+            const container = document.getElementById('particles');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation
+                particle.style.animation = `float-triangle ${Math.random() * 20 + 10}s infinite ease-in-out`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Initialize floating triangles and particles
+        createFloatingTriangles();
+        createParticles();
+    </script>
+</body>
+</html>
