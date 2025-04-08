@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Rights Overview</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+    <link href="{% static 'css/knowledge.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div id="vanta-bg"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Overview of Human Rights & Articles</h1>
+        </header>
+
+        <section id="rights">
+            <h2>Key Human Rights and Articles</h2>
+            <div class="card-container">
+                <!-- Cards will be populated from the dataset -->
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="copyright">
+            &copy; 2025 Human Rights Info. All rights reserved.
+        </div>
+    </footer>
+
+    <div id="article-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Human Right Title</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/knowledge.js' %}"></script>
+</body>
+</html>
