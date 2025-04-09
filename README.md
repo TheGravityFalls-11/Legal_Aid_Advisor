@@ -99,8 +99,15 @@ python manage.py runserver
 ---
 
 ## 📸 Snapshots
-### Dashboard
-![Loginin Page](https://github.com/user-attachments/assets/19c90858-68fd-4bfe-b676-01eabb86a70b)
+### Login Page
+![Login Page](https://github.com/user-attachments/assets/19c90858-68fd-4bfe-b676-01eabb86a70b)
+### DashBoard
+![Dashboard](https://github.com/user-attachments/assets/a4fa3fb7-d33a-48e9-9ddd-6cd59d595627)
+### Find Courts
+![Find Courts](https://github.com/user-attachments/assets/0a6ab60e-4389-413a-92fa-db8d20de6214)
+
+### Lawyers Details
+![Lawyers Detail](https://github.com/user-attachments/assets/6db352ec-bfb7-4ab1-89dc-fa10e7e46382)
 
 
 ---
