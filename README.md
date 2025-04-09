@@ -99,6 +99,8 @@ python manage.py runserver
 ---
 
 ##📸 Snapshots
+
+---
 ## 🔎 Usage
 
 - **Ask Legal Questions**: Use the chatbot for quick legal assistance.
