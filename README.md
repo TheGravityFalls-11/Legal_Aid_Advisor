@@ -98,7 +98,10 @@ python manage.py runserver
 
 ---
 
-##📸 Snapshots
+## 📸 Snapshots
+### Dashboard
+![Loginin Page](https://github.com/user-attachments/assets/19c90858-68fd-4bfe-b676-01eabb86a70b)
+
 
 ---
 ## 🔎 Usage
